@@ -1,6 +1,6 @@
-/* public/css/components.css – Design panel pickers & shared UI components */
+/* public/css/componentDesign panel pickers & shared UI components */
 
-/* ── Template grid ────────────────────────────────────────── */
+/* ── Template grid ── */
 .tmpl-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -21,7 +21,7 @@
 .tmpl-label        { font-size: 0.65rem; font-weight: 700; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; }
 .tmpl-card.sel .tmpl-label { color: var(--accent); }
 
-/* ── Color grid ───────────────────────────────── */
+/* ── Color grid -─ */
 .accent-row { 
   display: flex; 
   flex-direction: column; 
@@ -111,7 +111,7 @@
   background: var(--muted);
 }
 
-/* ── App theme cards ────────────────────────────────────── */
+/* ── App theme cards ── */
 .theme-cards {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -131,7 +131,7 @@
 .theme-nm         { font-size: 0.6rem; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 .theme-card.sel .theme-nm { color: var(--accent); }
 
-/* ── Font options ─────────────────────────────────────────── */
+/* ── Font options ── */
 .font-options { display: flex; gap: 8px; }
 .font-card {
   flex: 1;
