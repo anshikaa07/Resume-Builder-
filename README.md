@@ -1,4 +1,4 @@
-# ResumeForge v2
+# ResumeBuilder
 
 A full-featured, production-ready resume builder built with **Express.js** + vanilla JS.
 
@@ -20,7 +20,7 @@ A full-featured, production-ready resume builder built with **Express.js** + van
 ## Project Structure
 
 ```
-resumeforge/
+resumebuilder/
 ├── server.js               # Express entry point
 ├── package.json
 ├── routes/
