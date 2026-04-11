@@ -1,4 +1,4 @@
-# ResumeBuilder
+# Resume Builder
 
 A full-featured, production-ready resume builder built with **Express.js** + vanilla JS.
 
@@ -53,7 +53,7 @@ resumebuilder/
 
 ### 1. Install dependencies
 ```bash
-cd resumeforge
+cd resumebuilder
 npm install
 ```
 
