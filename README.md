@@ -125,6 +125,6 @@ The save indicator in the top bar shows: `Saving…` → `All saved`.
 
 ---
 
-## 🙌 Author
+## Author
 
 Anshika Kumar
