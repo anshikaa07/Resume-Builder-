@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeForge — Build your perfect resume</title>
+  <meta name="description" content="Free resume builder with AI summaries, live preview, multiple templates, themes and PDF export." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- External libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
+  <!-- App styles (split by concern) -->
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/themes.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/editor.css" />
+  <link rel="stylesheet" href="/css/preview.css" />
+  <link rel="stylesheet" href="/css/templates.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════ TOP BAR ═══════════════════════════ -->
+<header class="topbar" role="banner">
+  <div class="logo">
+    <span class="logo-icon">◈</span>
+    ResumeForge
+    <span class="logo-ver">v2</span>
+  </div>
+
+  <div class="topbar-center">
+    <div class="save-status" id="save-status">
+      <span class="save-dot"></span>
+      <span class="save-label">Loading…</span>
+    </div>
+  </div>
+
+  <div class="topbar-actions">
+    <!-- Theme quick-switcher dots -->
+    <div class="theme-dots" title="Switch UI theme" aria-label="UI theme switcher">
+      <button class="tdot" data-theme="dark"   style="background:linear-gradient(135deg,#1a1a22,#f0c040)"  aria-label="Dark theme"></button>
+      <button class="tdot" data-theme="light"  style="background:linear-gradient(135deg,#f4f2ec,#c0392b)"  aria-label="Light theme"></button>
+      <button class="tdot" data-theme="ocean"  style="background:linear-gradient(135deg,#07151e,#38d8e8)"  aria-label="Ocean theme"></button>
+      <button class="tdot" data-theme="forest" style="background:linear-gradient(135deg,#0b150f,#7adb78)"  aria-label="Forest theme"></button>
+      <button class="tdot" data-theme="rose"   style="background:linear-gradient(135deg,#f9f0f2,#c0396c)"  aria-label="Rose theme"></button>
+    </div>
+
+    <button class="btn-outline" id="btn-reset" title="Start fresh">↺ Reset</button>
+    <button class="btn-primary" id="btn-download">⬇ Download PDF</button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ MAIN ═══════════════════════════════ -->
+<div class="app-shell">
+
+  <!-- ── EDITOR PANEL ─────────────────────────────────────── -->
+  <aside class="editor-panel" role="complementary" aria-label="Resume editor">
+
+    <!-- Tab navigation -->
+    <nav class="tab-nav" role="tablist" aria-label="Editor sections">
+      <button class="tab active" role="tab" aria-selected="true"  data-panel="personal"   >Info</button>
+      <button class="tab"        role="tab" aria-selected="false" data-panel="experience" >Work</button>
+      <button class="tab"        role="tab" aria-selected="false" data-panel="education"  >Edu</button>
+      <button class="tab"        role="tab" aria-selected="false" data-panel="skills"     >Skills</button>
+      <button class="tab"        role="tab" aria-selected="false" data-panel="design"     >Design</button>
+    </nav>
+
+    <!-- Tab panels -->
+    <div class="panels-wrap">
+
+      <!-- PERSONAL -->
+      <section id="panel-personal" class="panel active" role="tabpanel">
+        <div class="section-label">Personal information</div>
+
+        <label class="field-label" for="f-photo">Profile photo</label>
+        <div class="photo-upload-container">
+          <div class="photo-preview" id="photo-preview">
+            <div class="photo-placeholder">
+              <span class="photo-icon">+</span>
+              <span class="photo-text">Add photo</span>
+            </div>
+          </div>
+          <input id="f-photo" type="file" accept="image/*" class="photo-input" hidden />
+          <button type="button" class="btn-outline photo-btn" id="btn-photo-upload">Choose photo</button>
+          <button type="button" class="btn-outline photo-btn" id="btn-photo-remove" hidden>Remove</button>
+        </div>
+
+        <label class="field-label" for="f-name">Full name</label>
+        <input id="f-name" type="text" placeholder="Jane Smith" class="field" autocomplete="name" />
+
+        <label class="field-label" for="f-title">Job title / tagline</label>
+        <input id="f-title" type="text" placeholder="Senior UX Designer" class="field" />
+
+        <label class="field-label" for="f-summary">Professional summary</label>
+        <div class="field-with-action">
+          <textarea id="f-summary" class="field" rows="4" placeholder="A passionate designer with 7+ years…"></textarea>
+          <button class="btn-ai" id="btn-ai-summary" title="Generate with AI">✦ Generate with AI</button>
+        </div>
+
+        <div class="row-2">
+          <div>
+            <label class="field-label" for="f-email">Email</label>
+            <input id="f-email" type="email" placeholder="jane@email.com" class="field" autocomplete="email" />
+          </div>
+          <div>
+            <label class="field-label" for="f-phone">Phone</label>
+            <input id="f-phone" type="tel" placeholder="+1 555 000 0000" class="field" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div>
+            <label class="field-label" for="f-location">Location</label>
+            <input id="f-location" type="text" placeholder="New York, NY" class="field" />
+          </div>
+          <div>
+            <label class="field-label" for="f-website">Website / LinkedIn</label>
+            <input id="f-website" type="url" placeholder="linkedin.com/in/jane" class="field" />
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="panel-experience" class="panel" role="tabpanel">
+        <div class="section-label">Work experience</div>
+        <div id="exp-list" class="entry-list"></div>
+        <button class="add-entry-btn" id="btn-add-exp">+ Add position</button>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="panel-education" class="panel" role="tabpanel">
+        <div class="section-label">Education</div>
+        <div id="edu-list" class="entry-list"></div>
+        <button class="add-entry-btn" id="btn-add-edu">+ Add education</button>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="panel-skills" class="panel" role="tabpanel">
+        <div class="section-label">Skills & credentials</div>
+
+        <label class="field-label" for="f-skills">Skills <span class="hint">(comma-separated)</span></label>
+        <textarea id="f-skills" class="field" rows="3" placeholder="Figma, React, Python, Leadership…"></textarea>
+
+        <label class="field-label" for="f-langs">Languages</label>
+        <input id="f-langs" type="text" placeholder="English (Native), French (B2)" class="field" />
+
+        <label class="field-label" for="f-certs">Certifications</label>
+        <textarea id="f-certs" class="field" rows="2" placeholder="AWS Solutions Architect, PMP…"></textarea>
+
+        <label class="field-label" for="f-interests">Interests / Hobbies <span class="hint">(optional)</span></label>
+        <input id="f-interests" type="text" placeholder="Open-source, Photography, Chess" class="field" />
+      </section>
+
+      <!-- DESIGN -->
+      <section id="panel-design" class="panel" role="tabpanel">
+
+        <div class="section-label">Resume template</div>
+        <div class="tmpl-grid" id="tmpl-grid">
+          <!-- Filled by design.js -->
+        </div>
+
+        <div class="section-label mt">Accent color</div>
+        <div class="accent-row" id="accent-row"></div>
+
+        <div class="section-label mt">App theme</div>
+        <div class="theme-cards" id="theme-cards">
+          <!-- Filled by design.js -->
+        </div>
+
+        <div class="section-label mt">Font style</div>
+        <div class="font-options" id="font-options">
+          <!-- Filled by design.js -->
+        </div>
+
+      </section>
+
+    </div><!-- /panels-wrap -->
+  </aside>
+
+  <!-- ── PREVIEW PANEL ─────────────────────────────────────── -->
+  <main class="preview-panel" role="main" aria-label="Resume preview">
+    <div class="preview-label">Live preview</div>
+    <div class="paper-wrap">
+      <div id="resume-paper" class="resume-paper"></div>
+    </div>
+  </main>
+
+</div><!-- /app-shell -->
+
+<!-- ── MODALS ─────────────────────────────────────────────── -->
+<div id="modal-reset" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-reset-title">
+    <h3 id="modal-reset-title">Start fresh?</h3>
+    <p>This will clear all your resume data. This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-outline" id="modal-cancel">Cancel</button>
+      <button class="btn-danger"  id="modal-confirm">Yes, reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ──────────────────────────────────────────────── -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- ── APP SCRIPTS (order matters) ───────────────────────── -->
+<script src="/js/state.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/editor.js"></script>
+<script src="/js/design.js"></script>
+<script src="/js/render.js"></script>
+<script src="/js/pdf.js"></script>
+<script src="/js/app.js"></script>
+
+</body>
+</html>

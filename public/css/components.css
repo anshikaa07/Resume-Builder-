@@ -1,0 +1,149 @@
+/* public/css/components.css – Design panel pickers & shared UI components */
+
+/* ── Template grid ────────────────────────────────────────── */
+.tmpl-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}
+.tmpl-card {
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  padding: 9px;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: center;
+}
+.tmpl-card:hover   { border-color: var(--border2); }
+.tmpl-card.sel     { border-color: var(--accent); background: rgba(255,255,255,0.03); }
+.tmpl-thumb        { height: 64px; border-radius: 5px; overflow: hidden; margin-bottom: 6px; background: var(--surface3); }
+.tmpl-label        { font-size: 0.65rem; font-weight: 700; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; }
+.tmpl-card.sel .tmpl-label { color: var(--accent); }
+
+/* ── Color grid ───────────────────────────────── */
+.accent-row { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+}
+
+.custom-color-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.custom-color-input {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: none;
+  transition: all 0.15s;
+}
+
+.custom-color-input:hover {
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+.custom-color-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.15s;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.color-swatch:hover { 
+  transform: scale(1.1); 
+  border-color: var(--border2);
+  z-index: 1;
+}
+
+.color-swatch.sel { 
+  border-color: var(--text); 
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px var(--surface);
+  z-index: 2;
+}
+
+/* Scrollbar styling for color grid */
+.color-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.color-grid::-webkit-scrollbar-track {
+  background: var(--surface2);
+  border-radius: 3px;
+}
+
+.color-grid::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 3px;
+}
+
+.color-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ── App theme cards ────────────────────────────────────── */
+.theme-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+}
+.theme-card {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.18s;
+}
+.theme-card:hover { border-color: var(--border2); }
+.theme-card.sel   { border-color: var(--accent); }
+.theme-swatch     { height: 30px; border-radius: 5px; margin-bottom: 5px; }
+.theme-nm         { font-size: 0.6rem; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.theme-card.sel .theme-nm { color: var(--accent); }
+
+/* ── Font options ─────────────────────────────────────────── */
+.font-options { display: flex; gap: 8px; }
+.font-card {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.18s;
+}
+.font-card:hover { border-color: var(--border2); }
+.font-card.sel   { border-color: var(--accent); background: rgba(255,255,255,0.03); }
+.font-preview    { font-size: 1.1rem; line-height: 1; margin-bottom: 4px; color: var(--text); }
+.font-name       { font-size: 0.6rem; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.font-card.sel .font-name { color: var(--accent); }
