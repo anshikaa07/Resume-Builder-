@@ -122,3 +122,9 @@ The save indicator in the top bar shows: `Saving…` → `All saved`.
 | New editor field       | `public/index.html` + `js/editor.js` + `js/render.js` |
 | Photo upload           | `routes/api.js` + `js/editor.js`    |
 | Database persistence   | `routes/resume.js` (replace session store) |
+
+---
+
+## 🙌 Author
+
+Anshika Kumar
