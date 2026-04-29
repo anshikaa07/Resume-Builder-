@@ -4,16 +4,16 @@ A full-featured, production-ready resume builder built with **Express.js** + van
 
 ## Features
 
-- ✅ **4 Resume templates** — Classic, Modern (sidebar), Minimal, Bold
-- ✅ **5 UI themes** — Dark, Light, Ocean, Forest, Rose
-- ✅ **10 accent colors** for resume personalization
-- ✅ **3 resume font styles** — Serif, Sans, Mono
-- ✅ **Live preview** — updates instantly as you type
-- ✅ **Persistent progress** — saved to server session + localStorage fallback
-- ✅ **AI summary generator** — powered by Claude (Anthropic API)
-- ✅ **PDF export** — html2canvas + jsPDF, supports multi-page
-- ✅ **Reset / start fresh** with confirmation modal
-- ✅ Fully accessible (ARIA roles, keyboard nav, focus rings)
+- **4 Resume templates** — Classic, Modern (sidebar), Minimal, Bold
+- **5 UI themes** — Dark, Light, Ocean, Forest, Rose
+- **10 accent colors** for resume personalization
+- **3 resume font styles** — Serif, Sans, Mono
+- **Live preview** — updates instantly as you type
+- **Persistent progress** — saved to server session + localStorage fallback
+- **AI summary generator** — powered by Claude (Anthropic API)
+- **PDF export** — html2canvas + jsPDF, supports multi-page
+- **Reset / start fresh** with confirmation modal
+- Fully accessible (ARIA roles, keyboard nav, focus rings)
 
 ---
 
